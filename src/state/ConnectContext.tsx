@@ -13,6 +13,7 @@ export const ConnectContext = React.createContext({
   disconnect: () => {},
   library: null,
   account: null,
+  close: () => {},
 })
 
 export const ConnectProvider: React.FC<Props> = ({ children }): JSX.Element => {
@@ -23,6 +24,7 @@ export const ConnectProvider: React.FC<Props> = ({ children }): JSX.Element => {
     chainId,
     library,
     account,
+    connector,
   } = useWeb3React()
 
   const connect = async () => {
@@ -32,13 +34,18 @@ export const ConnectProvider: React.FC<Props> = ({ children }): JSX.Element => {
       console.error(error)
     }
   }
-
   const disconnect = async () => {
     try {
       await deactivate()
     } catch (error) {
       console.error(error)
     }
+  }
+
+  // Removes wallet from the DOM. Useful for wallets injected via iframe (e.g. Portis or WalletConnect)
+  const close = () => {
+    // @ts-ignore
+    connector.close()
   }
 
   return (
@@ -52,6 +59,7 @@ export const ConnectProvider: React.FC<Props> = ({ children }): JSX.Element => {
         library,
         // @ts-ignore
         account,
+        close,
       }}
     >
       {children}

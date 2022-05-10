@@ -1,38 +1,213 @@
-.App {
-  text-align: center;
+/* Global CSS */
+
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+html,
+body {
+  scroll-behavior: smooth;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  font-family: Helvetica, Arial, sans-serif !important;
 }
 
-.App-link {
-  color: #61dafb;
+h1,
+h2,
+h3 {
+  font-family: Helvetica, Arial, sans-serif !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+  color: #000;
+  text-decoration: none !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bold-on-hover:hover {
+  font-weight: bold;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.page-bg-color {
+  background-color: #fafbfd;
+}
+
+.link:hover {
+  text-decoration: underline !important;
+}
+
+.bigger-btn {
+  font-family: 1.125rem !important;
+  font-weight: bold;
+  height: 50px;
+}
+
+.shadow-btn {
+  background-color: #007bff !important;
+  font-weight: bold;
+  color: #fff !important;
+  box-shadow: salmon 0px 10px 40px;
+  text-decoration: none;
+  border-radius: 5px !important;
+  border-radius: 0.5rem !important;
+}
+
+.shadow-btn:hover {
+  background-color: #2760c2 !important;
+  transition: 150ms ease-in;
+}
+
+.regular-btn {
+  background-color: #007bff !important;
+  font-weight: bold;
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 5px !important;
+  border-radius: 0.5rem !important;
+}
+
+.regular-btn:hover {
+  background-color: #2760c2 !important;
+  transition: 150ms ease-in;
+}
+
+.outline-btn {
+  background-color: #fff;
+  font-weight: bold;
+  color: #007bff !important;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 5px !important;
+  border-radius: 0.5rem !important;
+}
+
+.outline-btn:hover {
+  background-color: #007bff;
+  color: #fff !important;
+  transition: 200ms ease-in;
+}
+
+.btn-link {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: bold;
+}
+
+.btn-link a {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: bold;
+}
+
+.btn-outline-link {
+  font-weight: bold;
+  text-decoration: none !important;
+  border-radius: 5px !important;
+}
+
+.btn-outline-link:hover {
+  background-color: #007bff;
+  color: #fff !important;
+  transition: 200ms ease-in;
+}
+
+.light-btn {
+  background-color: #fff;
+  color: #007bff !important;
+  border: 1.5px solid #007bff;
+  padding: 8px !important;
+  border-radius: 0.5rem !important;
+}
+
+.light-btn:hover {
+  opacity: 0.9;
+}
+
+.disabled-btn {
+  cursor: no-drop !important;
+}
+
+.light-link {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+.light-link:hover {
+  opacity: 0.9;
+}
+
+.dark-mode {
+  background-color: #191b1f;
+  color: #999;
+  color: #fff;
+  height: 100%;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.light-mode {
+  background-color: #fff;
+  color: #333;
+  height: 100%;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.text-muted-dark-mode {
+  color: #e9e5e5 !important;
+}
+
+.modal {
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  right: auto !important;
+}
+
+.dimmed.dimmable > .ui.modals.dimmer.visible {
+  display: flex !important;
+}
+
+.border-rad-05 {
+  border-radius: 0.5rem !important;
+}
+
+.dark-text {
+  color: black !important;
 }

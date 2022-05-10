@@ -1,0 +1,147 @@
+$primary-color: #007bff;
+$dark-mode-primary: #191b1f;
+$dark-mode-secondary: #212429;
+$breakpoint: 992px;
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 12vh;
+  width: 100%;
+  position: fixed;
+  background-color: #fafbfd;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 6px 0 #636262;
+  z-index: 10 !important;
+
+  .app-logo {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .app-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .app-account {
+      .header-address {
+        color: $primary-color;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+
+  @media screen and (max-width: $breakpoint) {
+    flex-direction: column;
+    margin-right: 60px;
+    margin-top: 10px;
+  }
+
+  .nav-link {
+    font-size: 1.1em;
+
+    &:hover {
+      color: rgb(1, 1, 1);
+
+      .nav-link-name {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.app-header-dark-mode {
+  background-color: $dark-mode-primary;
+  color: #fff;
+}
+
+.app-nav-dark-mode,
+.nav-link-dark-mode {
+  color: #fff !important;
+}
+
+.app-header div {
+  outline: none !important;
+  border: none !important;
+}
+
+.app-header div button {
+  outline: none !important;
+  border: none !important;
+}
+
+.header-address {
+  color: $primary-color;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.app-mode-icon {
+  @media screen and (max-width: $breakpoint) {
+    display: none;
+  }
+}
+
+.app-title {
+  color: #000 !important;
+}
+
+.app-title-dark-mode {
+  color: #fff !important;
+}
+
+.mode-switcher {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative !important;
+  outline: none !important;
+}
+
+.mode-switcher-moon {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(1, 1, 1);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  outline: none !important;
+}
+
+.mode-switcher-mobile {
+  display: block;
+  margin-left: 22px;
+  margin-bottom: -10px;
+}
+
+.mobile-logout {
+  display: block;
+  margin-left: 22px;
+  margin-top: 15px;
+}

@@ -46,12 +46,12 @@
 .Toastify .Toastify__toast {
   border: 1.5px solid rgb(5, 60, 143);
   box-sizing: border-box;
-  box-shadow: 0px 0px 4px #06f, 0px 0px 10px #06f;
+  box-shadow: 0px 0px 4px #007bff, 0px 0px 10px #007bff;
   box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%);
   border-radius: 4px;
   border-top-left-radius: 0;
-  background: linear-gradient(#0066ff, #1d1d3c);
-  background: #0066ff;
+  background: linear-gradient(#007bff, #1d1d3c);
+  background: #007bff;
   border-top-right-radius: 0;
   color: #fff;
 }
@@ -99,5 +99,5 @@
   float: left;
   margin-right: 1rem;
   border-radius: 100%;
-  background-color: #06f;
+  background-color: #007bff;
 }

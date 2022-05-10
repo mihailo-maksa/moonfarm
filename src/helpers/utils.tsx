@@ -6,6 +6,7 @@ import './toast.css'
 export const ZERO_ADDRESS: string = '0x0000000000000000000000000000000000000000'
 export const RPC_URL: string = `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`
 export const RINKEBY_CHAIN_ID: number = 4
+export const RINKEBY_CHAIN_ID_HEX: string = '0x4'
 export const oneYear: number = 60 * 60 * 24 * 365
 
 export const copyToClipboard = (e: any, text: string): void => {
@@ -57,7 +58,7 @@ export const switchToRinkeby = async () => {
   try {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: RINKEBY_CHAIN_ID }],
+      params: [{ chainId: RINKEBY_CHAIN_ID_HEX }],
     })
   } catch (error) {
     console.error(error)
@@ -127,7 +128,7 @@ export const sendNotification = (
   const toastConstant: React.FC = (): JSX.Element => {
     return (
       <div className="">
-        <h3>{title}</h3>
+        <h3 className="bold">{title}</h3>
         <p>{body}</p>
       </div>
     )
@@ -176,4 +177,38 @@ export const notifyUser = async (tx: any, fn: () => void = () => {}) => {
   } catch (error) {
     console.error(error)
   }
+}
+
+interface UserAlertProps {
+  title: string
+  body: string
+}
+
+export const UserAlert: React.FC<UserAlertProps> = ({
+  title,
+  body,
+}): JSX.Element => {
+  return (
+    <div className="alert alert-danger" role="alert">
+      <h4 className="alert-heading">
+        <i className="fas fa-exclamation-triangle"></i>
+
+        <span className="ml-2">{title}</span>
+      </h4>
+      <p className="alert-body">{body}</p>
+    </div>
+  )
+}
+
+export const Filler: React.FC = (): JSX.Element => {
+  return (
+    <>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </>
+  )
 }
