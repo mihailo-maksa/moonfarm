@@ -22,6 +22,7 @@ import Tooltip from 'react-bootstrap/esm/Tooltip'
 import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger'
 import { useMediaQuery } from 'react-responsive'
 import Button from 'react-bootstrap/esm/Button'
+import metamaskIcon from '../../assets/metamask.svg'
 
 const Header: React.FC = (): JSX.Element => {
   const { connect, disconnect, isConnected, account, chainId } = useContext(
@@ -200,8 +201,13 @@ const Header: React.FC = (): JSX.Element => {
                 connect()
                 setSaveAccountTracker(true)
               }}
-              className={'btn btn-primary bold mr-4'}
+              className={'btn btn-primary bold mr-4 connect-btn-mobile'}
             >
+              <img
+                src={metamaskIcon}
+                alt="MetaMask Icon"
+                className="metamask-icon-btn"
+              />{' '}
               Connect Wallet
             </button>
           )}
@@ -375,6 +381,11 @@ const Header: React.FC = (): JSX.Element => {
                   }}
                   className={'btn btn-primary bold mr-4'}
                 >
+                  <img
+                    src={metamaskIcon}
+                    alt="MetaMask Icon"
+                    className="metamask-icon-btn"
+                  />{' '}
                   Connect Wallet
                 </button>
               )}

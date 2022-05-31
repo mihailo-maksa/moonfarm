@@ -1,0 +1,79 @@
+$primary-color: #007bff;
+$dark-mode-primary: #191b1f;
+$dark-mode-secondary: #212429;
+$breakpoint: 992px;
+$breakpoint2: 576px;
+
+.vaults-dark-mode {
+  background-color: $dark-mode-secondary;
+  color: #fff;
+}
+
+.vaults-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .vault-container {
+    box-shadow: 0 1.5px 3px 0 #000;
+    border-radius: 5px;
+    width: 70%;
+    margin-bottom: 2em;
+
+    @media screen and (max-width: $breakpoint) {
+      width: 80;
+    }
+
+    @media screen and (max-width: $breakpoint2) {
+      width: 90%;
+    }
+
+    .vault-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3em 2em 1em;
+
+      .vault-title {
+        font-weight: bold;
+      }
+
+      .vault-property {
+        font-weight: bold;
+      }
+    }
+
+    .vault-body {
+      padding: 1em 1em 3em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.vaults-container-dark-mode {
+  background-color: $dark-mode-secondary;
+  color: #fff;
+
+  .vault-container {
+    background-color: $dark-mode-primary;
+    color: #fff;
+
+    .vault-header {
+      background-color: $dark-mode-primary;
+      color: #fff;
+    }
+
+    hr {
+      border-color: #333;
+    }
+
+    .vault-body {
+      background-color: $dark-mode-primary;
+      color: #fff;
+    }
+  }
+}

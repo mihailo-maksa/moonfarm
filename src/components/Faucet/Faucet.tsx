@@ -13,6 +13,7 @@ import ERC20 from '../../contracts/ERC20.json'
 import WETH from '../../contracts/WETH.json'
 import { ethers } from 'ethers'
 import './faucet.scss'
+import metamaskIcon from '../../assets/metamask.svg'
 
 const Faucet: React.FC = (): JSX.Element => {
   const { isDarkMode } = useContext(ThemeContext)
@@ -89,13 +90,36 @@ const Faucet: React.FC = (): JSX.Element => {
     }
   }
 
+  const mintWbtc = async () => {
+    try {
+      const wbtc = await getContract(
+        library,
+        account,
+        contracts.contracts.WBTC.address,
+        ERC20.abi,
+      )
+
+      const tx = await wbtc.mint(account, ethers.utils.parseEther('0.1'))
+
+      notifyUser(tx)
+    } catch (error) {
+      console.error(error)
+      // @ts-ignore
+      if (error.code === 4001) {
+        errorNotification('User rejected transaction signature')
+      } else {
+        errorNotification('Failed to mint WBTC')
+      }
+    }
+  }
+
   const addWeth = async () => {
     try {
       await addTokenToWallet(
         'WETH',
         18,
         contracts.contracts.WETH.address,
-        'https:://coingecko.com',
+        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/weth.png',
       )
     } catch (error) {
       console.error(error)
@@ -108,7 +132,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'DAI',
         18,
         contracts.contracts.DAI.address,
-        'https:://coingecko.com',
+        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/dai.png',
       )
     } catch (error) {
       console.error(error)
@@ -121,7 +145,20 @@ const Faucet: React.FC = (): JSX.Element => {
         'USDC',
         6,
         contracts.contracts.USDC.address,
-        'https:://coingecko.com',
+        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/usdc.png',
+      )
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const addWbtc = async () => {
+    try {
+      await addTokenToWallet(
+        'WBTC',
+        18,
+        contracts.contracts.WBTC.address,
+        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/wbtc.png',
       )
     } catch (error) {
       console.error(error)
@@ -134,20 +171,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'MOON',
         18,
         contracts.contracts.MOON.address,
-        'https:://coingecko.com',
-      )
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const addXMoon = async () => {
-    try {
-      await addTokenToWallet(
-        'WETH',
-        18,
-        contracts.contracts.xMOON.address,
-        'https:://coingecko.com',
+        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/logo192.png',
       )
     } catch (error) {
       console.error(error)
@@ -160,7 +184,7 @@ const Faucet: React.FC = (): JSX.Element => {
 
       <h1 className="faucet-title bold">MoonFarm Faucet</h1>
 
-      <div className="faucet-content">
+      <div className="faucet-header-buttons">
         <div className="faucet-button-group">
           <button className="btn btn-secondary btn-link" type="button">
             <a
@@ -177,17 +201,20 @@ const Faucet: React.FC = (): JSX.Element => {
             type="button"
             onClick={addMoon}
           >
+            <img
+              src={metamaskIcon}
+              alt="MetaMask Icon"
+              className="metamask-icon-btn"
+            />{' '}
             Add MOON to MetaMask
           </button>
-          <button
-            className="btn btn-primary bold"
-            type="button"
-            onClick={addXMoon}
-          >
-            Add xMOON to MetaMask
-          </button>
         </div>
+      </div>
 
+      <br />
+      <br />
+
+      <div className="faucet-content">
         <div className="faucet-button-group">
           <button className="btn btn-secondary btn-link" type="button">
             <a
@@ -211,6 +238,11 @@ const Faucet: React.FC = (): JSX.Element => {
             type="button"
             onClick={addWeth}
           >
+            <img
+              src={metamaskIcon}
+              alt="MetaMask Icon"
+              className="metamask-icon-btn"
+            />{' '}
             Add WETH to MetaMask
           </button>
         </div>
@@ -238,6 +270,11 @@ const Faucet: React.FC = (): JSX.Element => {
             type="button"
             onClick={addDai}
           >
+            <img
+              src={metamaskIcon}
+              alt="MetaMask Icon"
+              className="metamask-icon-btn"
+            />{' '}
             Add DAI to MetaMask
           </button>
         </div>
@@ -265,7 +302,44 @@ const Faucet: React.FC = (): JSX.Element => {
             type="button"
             onClick={addUsdc}
           >
+            <img
+              src={metamaskIcon}
+              alt="MetaMask Icon"
+              className="metamask-icon-btn"
+            />{' '}
             Add USDC to MetaMask
+          </button>
+        </div>
+
+        <div className="faucet-button-group">
+          <button className="btn btn-secondary btn-link" type="button">
+            <a
+              href={`https://app.sushi.com/swap?inputCurrency=${contracts.contracts.WBTC.address}&outputCurrency=${contracts.contracts.MOON.address}&chainId=4`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bold"
+            >
+              Buy Moon with WBTC
+            </a>
+          </button>
+          <button
+            className="btn btn-primary bold"
+            type="button"
+            onClick={mintWbtc}
+          >
+            Mint 0.1 WBTC
+          </button>
+          <button
+            className="btn btn-primary bold"
+            type="button"
+            onClick={addWbtc}
+          >
+            <img
+              src={metamaskIcon}
+              alt="MetaMask Icon"
+              className="metamask-icon-btn"
+            />{' '}
+            Add WBTC to MetaMask
           </button>
         </div>
       </div>

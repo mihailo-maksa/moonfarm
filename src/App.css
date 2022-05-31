@@ -73,6 +73,11 @@ input[type='number'] {
   text-decoration: underline !important;
 }
 
+.switch-network-link {
+  color: #06f;
+  cursor: pointer;
+}
+
 .bigger-btn {
   font-family: 1.125rem !important;
   font-weight: bold;
@@ -210,4 +215,51 @@ input[type='number'] {
 
 .dark-text {
   color: black !important;
+}
+
+.switch-chain-alert {
+  text-align: center;
+  padding: 20px 10px;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 10%;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%);
+  width: 70%;
+}
+
+.switch-chain-alert-dark-mode {
+  text-align: center;
+  padding: 20px 10px;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 10%;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%);
+  background-color: #191b1f;
+  color: #fff;
+  width: 70%;
+}
+
+@media screen and (max-width: 992px) {
+  .switch-chain-alert,
+  .switch-chain-alert-dark-mode {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .switch-chain-alert,
+  .switch-chain-alert-dark-mode {
+    width: 90%;
+  }
+}
+
+.dismiss-alert {
+  margin-left: 1.5rem;
+  color: #e84142;
+  font-weight: bold;
+  cursor: pointer;
 }

@@ -50,3 +50,14 @@ $breakpoint2: 576px;
   background-color: $dark-mode-secondary;
   color: #fff;
 }
+
+.faucet-header-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  div button {
+    margin-left: 2em;
+  }
+}

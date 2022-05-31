@@ -1,13 +1,18 @@
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import React from 'react'
 import { toast } from 'react-toastify'
 import './toast.css'
+import NumFormat from 'react-number-format'
 
 export const ZERO_ADDRESS: string = '0x0000000000000000000000000000000000000000'
 export const RPC_URL: string = `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`
 export const RINKEBY_CHAIN_ID: number = 4
 export const RINKEBY_CHAIN_ID_HEX: string = '0x4'
 export const oneYear: number = 60 * 60 * 24 * 365
+
+export const infiniteApproveValue: BigNumber = BigNumber.from(
+  '1157920892373161954235709850086879078532699',
+)
 
 export const copyToClipboard = (e: any, text: string): void => {
   e.preventDefault()
@@ -179,24 +184,40 @@ export const notifyUser = async (tx: any, fn: () => void = () => {}) => {
   }
 }
 
-interface UserAlertProps {
-  title: string
-  body: string
+interface AlertProps {
+  currentChainId: number
+  requiredChainId: number
+  alertCondition: boolean
+  alertConditionHandler: () => void
+  isDarkMode: boolean
 }
 
-export const UserAlert: React.FC<UserAlertProps> = ({
-  title,
-  body,
-}): JSX.Element => {
+export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
+  currentChainId,
+  requiredChainId,
+  alertCondition,
+  alertConditionHandler,
+  isDarkMode,
+}): any => {
   return (
-    <div className="alert alert-danger" role="alert">
-      <h4 className="alert-heading">
-        <i className="fas fa-exclamation-triangle"></i>
-
-        <span className="ml-2">{title}</span>
-      </h4>
-      <p className="alert-body">{body}</p>
-    </div>
+    currentChainId !== requiredChainId &&
+    alertCondition && (
+      <div
+        className={`${
+          isDarkMode ? 'switch-chain-alert-dark-mode' : 'switch-chain-alert'
+        }`}
+      >
+        <strong>
+          ⚠️ Wrong network: Please switch to the{' '}
+          <span onClick={switchToRinkeby} className="link switch-network-link">
+            Rinkeby test network
+          </span>
+        </strong>
+        <span className="dismiss-alert" onClick={alertConditionHandler}>
+          X
+        </span>
+      </div>
+    )
   )
 }
 
@@ -210,5 +231,26 @@ export const Filler: React.FC = (): JSX.Element => {
       <br />
       <br />
     </>
+  )
+}
+
+interface NumberFormatProps {
+  value: number
+  decimalScale: number
+}
+
+export const NumberFormat: React.FC<NumberFormatProps> = ({
+  value,
+  decimalScale,
+}): JSX.Element => {
+  return (
+    <NumFormat
+      className="number"
+      value={value}
+      displayType="text"
+      thousandSeparator
+      prefix=""
+      decimalScale={decimalScale}
+    />
   )
 }
