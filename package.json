@@ -1,6 +1,10 @@
 {
   "name": "moonfarm",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "homepage": ".",
+  "description": "Yield farming protocol built to maximize returns on your LP positions.",
+  "author": "Mihailo Maksa",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@gelatonetwork/limit-orders-lib": "^4.3.0-alpha.1",
