@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ConnectContext } from '../../state/ConnectContext'
 import { ThemeContext } from '../../state/ThemeContext'
 import { getContract } from '../../helpers/contract'
@@ -7,6 +7,8 @@ import {
   notifyUser,
   errorNotification,
   Filler,
+  RINKEBY_CHAIN_ID,
+  SwitchToRinkebyAlert,
 } from '../../helpers/utils'
 import contracts from '../../contracts/contracts.json'
 import ERC20 from '../../contracts/ERC20.json'
@@ -18,6 +20,26 @@ import metamaskIcon from '../../assets/metamask.svg'
 const Faucet: React.FC = (): JSX.Element => {
   const { isDarkMode } = useContext(ThemeContext)
   const { library, account } = useContext(ConnectContext)
+
+  const [networkWarning, setNetworkWarning] = useState<boolean>(true)
+  const [currentChainId, setCurrentChainId] = useState<number>(0)
+
+  useEffect(() => {
+    const main = async () => {
+      try {
+        // @ts-ignore
+        const { chainId: chain_id } = await new ethers.providers.Web3Provider(
+          window.ethereum,
+        ).getNetwork()
+
+        setCurrentChainId(chain_id)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    main()
+  }, [])
 
   const mintWeth = async () => {
     try {
@@ -181,6 +203,13 @@ const Faucet: React.FC = (): JSX.Element => {
   return (
     <div className={`${isDarkMode ? 'faucet-dark-mode faucet' : 'faucet'}`}>
       <Filler />
+      <SwitchToRinkebyAlert
+        currentChainId={currentChainId}
+        requiredChainId={RINKEBY_CHAIN_ID}
+        alertCondition={networkWarning}
+        alertConditionHandler={() => setNetworkWarning(false)}
+        isDarkMode={isDarkMode}
+      />
 
       <h1 className="faucet-title bold">MoonFarm Faucet</h1>
 
